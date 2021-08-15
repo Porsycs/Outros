@@ -10,7 +10,8 @@ function fat() {
 
 function fibo() {
     var num = parseInt(document.getElementById("fibo").value)
-       var soma, fib1 = 1, fib2 = 1
+    var soma, fib1 = 1,
+        fib2 = 1
     for (var i = 3; i <= num; i = i + 1) {
         soma = fib1 + fib2
         fib1 = fib2
@@ -21,11 +22,22 @@ function fibo() {
 
 function soma() {
     soma = fat() + fibo()
-    return soma
+    if (fibo() == undefined) {
+        return fat()
+    } else if (fat() == undefined) {
+        return fibo()
+    } else
+        return soma
 }
 
 function convert() {
-    num = soma
+    if (fibo() == undefined) {
+        num = fat()
+    } else if (fat() == undefined) {
+        num = fibo()
+    } else {
+        num = soma
+    }
     conv = num.toString()
     if (conv.length % 2 != 0) {
         conv = 0 + conv
